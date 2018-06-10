@@ -1,0 +1,805 @@
+9.6.2018 г. 11:02:37 : This was logged just now!!!
+9.6.2018 г. 11:04:04 : This was logged just now!!!
+9.6.2018 г. 18:08:28 : This was logged just now!!!
+9.6.2018 г. 18:11:07 : This was logged just now!!!
+Opened connection at 9.6.2018 г. 21:11:28 +03:00
+
+Started transaction at 9.6.2018 г. 21:11:28 +03:00
+
+CREATE TABLE [dbo].[MyCollectionItems] (
+    [MyCollectionItemId] [int] NOT NULL IDENTITY,
+    [MyObjectWrapperId] [int],
+    [MyObjectWrapper_ObjectWrapperId] [int],
+    CONSTRAINT [PK_dbo.MyCollectionItems] PRIMARY KEY ([MyCollectionItemId])
+)
+
+
+-- Executing at 9.6.2018 г. 21:11:28 +03:00
+
+-- Completed in 24 ms with result: -1
+
+
+
+CREATE TABLE [dbo].[MyObjectWrappers] (
+    [ObjectWrapperId] [int] NOT NULL IDENTITY,
+    [ObjectAsByte] [varbinary](max),
+    [Name] [nvarchar](max),
+    CONSTRAINT [PK_dbo.MyObjectWrappers] PRIMARY KEY ([ObjectWrapperId])
+)
+
+
+-- Executing at 9.6.2018 г. 21:11:28 +03:00
+
+-- Completed in 18 ms with result: -1
+
+
+
+CREATE INDEX [IX_MyObjectWrapper_ObjectWrapperId] ON [dbo].[MyCollectionItems]([MyObjectWrapper_ObjectWrapperId])
+
+
+-- Executing at 9.6.2018 г. 21:11:28 +03:00
+
+-- Completed in 9 ms with result: -1
+
+
+
+ALTER TABLE [dbo].[MyCollectionItems] ADD CONSTRAINT [FK_dbo.MyCollectionItems_dbo.MyObjectWrappers_MyObjectWrapper_ObjectWrapperId] FOREIGN KEY ([MyObjectWrapper_ObjectWrapperId]) REFERENCES [dbo].[MyObjectWrappers] ([ObjectWrapperId])
+
+
+-- Executing at 9.6.2018 г. 21:11:28 +03:00
+
+-- Completed in 12 ms with result: -1
+
+
+
+CREATE TABLE [dbo].[__MigrationHistory] (
+    [MigrationId] [nvarchar](150) NOT NULL,
+    [ContextKey] [nvarchar](300) NOT NULL,
+    [Model] [varbinary](max) NOT NULL,
+    [ProductVersion] [nvarchar](32) NOT NULL,
+    CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY ([MigrationId], [ContextKey])
+)
+
+
+-- Executing at 9.6.2018 г. 21:11:28 +03:00
+
+-- Completed in 9 ms with result: -1
+
+
+
+INSERT [dbo].[__MigrationHistory]([MigrationId], [ContextKey], [Model], [ProductVersion])
+VALUES (N'201806091811278_InitialCreate', N'Client.Data.TaskBettingDbContext',  0x1F8B0800000000000400CD59DB6EE336107D2FD07F10F4D41659CB495EDAC0DE45AE85D14D1CC4C9B66F012D8D1D76294A25A9C046D12FEB433FA9BFD0A16EB648DDEC26BBC102C18622CFDCCE7086937FFFFE67F4611532E71984A4111FBB8783A1EB00F7A380F2E5D84DD4E2DD8FEE87F7DF7E33BA0CC295F3A9D877ACF7E1492EC7EE9352F189E749FF0942220721F54524A3851AF851E89120F28E86C39FBCC3430F10C2452CC719DD255CD110D25FF0D7F388FB10AB84B0EB280026F375FC324B519D1B12828C890F63F79C51E06A704114719D534609AA3003B6701DC279A48842054F1E24CC9488F87216E30261F7EB1870DF823009B9E2279BED7D6D181E691BBCCDC102CA4FA48AC21D010F8F73A778E6F1BD5CEB964E43B75DA27BD55A5B9DBA6EEC5EAFCF23C6C0D7F01305A1EB98424FCE99D007361E9E67C11898670F9C6CC741C907A48DFE871F12A61201630E8912841D38B7C99C51FF1758DF479F818F79C2D8B6A2A82A7EAB2CE0D2AD8862106A7D078B06F52781EB78551CCF042A615A303283275C1D1FB9CE0D2A47E60C4A9E6C3967A622013F0307411404B744291018E64900A9A72D6D2CD9D3F9EF28FA5741625CB7441BA76FC8335DA682DB715CE70E58BA4F3ED138CB8381B1E751DB2A5DE74A44E15DC46C906CC3E33D114B50A857D4B66B1625C287AAC2236F43B70E121ADAEFC2C1CAD1AF40412B80BBF2AF9D01AF48BE4CF0A93C5B2B28A49E514E049EBC26AB8FC097EA09A34356C812BA82A058C9356947D73F0B54BC73B16EF4437DE014CB0C1E5222B185346640CEE697E37DC1E876DE17D9D187F7A752463E4DD5AB277EAE5AD5E24B1E38BDF4CC3C5D6331FA1DB94F63643B6A35768783C1A1E5D82E31E535B02DC6AC1D55393F986ED972807D1F60AD5784229773DFDC13F9F90C9442E25CCCF54758A99A9B012B7A7E39C89C32A65D1A7C06AAE1B647266CA2D56898E52C13B4E2B27A4C232606E4966F1A710BEA6EED6DE5B87979F5A552695E9D65DEAEA805732AA85610CC5BB3EA8F9AEC2AF9B2690ABDAC2B2CBA47AFA17D1C5DA37A48ABAD76325F7166792FF96EB67BAF1566189E2F6B5AAE52DB5212DEDD6409C657148D9A5E5121956E64E744DF88E741686DABCD8E069216229B12C00E68C1DDE2A4FE7F767AABCBB6D3C400DAF8F50A4D0DF15C6A35B410C186487B7DC288E8D1B5E14A12F2BE9D613BBA5595ABE01D553FE39F61BDE967CF72B4910366047BC6D7C8D8FDC35BBDB1F6896E074293FB5B9DDFC3F5EDB845C76383165FFA23665DCE3652B6F2E5E950BD305B3951D4915E712F36EF9ABABA2EB46755B5EAD80EDB9D1AA6804EAA68A7965AEE6B405EE07A1AF0121757ABDA580D029A369913A95F0F6567FD3F3C65D6639B81565936B794FC2FCBB35186477949EC31EA316B64B6C575D025CF34D0F571B696E8BB8CD0B33F58C6EFCD866BC2E902A4CA9E7EEED1F0F0C8181ABD9D018E2765C0769CE2BCB9510AD5DEEF7CAF5A8FDD3DA727A9B40D58ED4BB223B5DB90AD47C88407B01ABB7FA65827CEE4B7C70EB803672A908627CED0F9AB5DD3BD87286F6894F12AC1AF9B5E3C13314F0718DF8564F5FDAE14D89E587084F29F88E801F4859EFB2FFAC237DFB7FBBFEAF5D01E1620741409C3DB5F2A81F7BFD5DDDC0ACA7D1A13D6609D5D3D77E6A70E4529C6FC72013170CDB5261FF451608FFEA2946BA45297D3769C96D8CFC6DDC620BDA62059991DBBC13C42CA64F9D0FD94EF1896F49995D40B6E9F4C7CDD894ADB10A56386521F98FA9EFB55C626761F8674DDFAC31CE692A4CB0D84EE3879A6D406B4D833E18BA8482443A3628B5989419100597C2A145D105FE1671FA44C07C89F084B70CB65388760C2A7898A132C0112C239AB8CBB75DEB5C94F6743559D47D3381D1CBF8409A826451360CACF12CA8252EF2BBBB03541E884CEABA58EA5D25573B92E916E22DE1328775F790FDD4318330493533E23CFB08F6E0F123EC292F8EBA29D6E06E90E44D5EDA30B4A96828432C7D89CD77F6CF6F45F9BDFFF0716967D639F1E0000 , N'6.2.0-61023')
+
+-- Executing at 9.6.2018 г. 21:11:28 +03:00
+
+-- Completed in 29 ms with result: 1
+
+
+
+Committed transaction at 9.6.2018 г. 21:11:28 +03:00
+
+Opened connection at 9.6.2018 г. 21:11:29 +03:00
+
+Started transaction at 9.6.2018 г. 21:11:29 +03:00
+
+INSERT [dbo].[MyObjectWrappers]([ObjectAsByte], [Name])
+VALUES (@0, @1)
+SELECT [ObjectWrapperId]
+FROM [dbo].[MyObjectWrappers]
+WHERE @@ROWCOUNT > 0 AND [ObjectWrapperId] = scope_identity()
+
+
+-- @0: 'System.Byte[]' (Type = Binary, Size = -1)
+
+-- @1: 'First' (Type = String, Size = -1)
+
+-- Executing at 9.6.2018 г. 21:11:29 +03:00
+
+-- Completed in 17 ms with result: SqlDataReader
+
+
+
+INSERT [dbo].[MyCollectionItems]([MyObjectWrapperId], [MyObjectWrapper_ObjectWrapperId])
+VALUES (NULL, @0)
+SELECT [MyCollectionItemId]
+FROM [dbo].[MyCollectionItems]
+WHERE @@ROWCOUNT > 0 AND [MyCollectionItemId] = scope_identity()
+
+
+-- @0: '1' (Type = Int32)
+
+-- Executing at 9.6.2018 г. 21:11:29 +03:00
+
+-- Completed in 24 ms with result: SqlDataReader
+
+
+
+INSERT [dbo].[MyCollectionItems]([MyObjectWrapperId], [MyObjectWrapper_ObjectWrapperId])
+VALUES (NULL, @0)
+SELECT [MyCollectionItemId]
+FROM [dbo].[MyCollectionItems]
+WHERE @@ROWCOUNT > 0 AND [MyCollectionItemId] = scope_identity()
+
+
+-- @0: '1' (Type = Int32)
+
+-- Executing at 9.6.2018 г. 21:11:29 +03:00
+
+-- Completed in 6 ms with result: SqlDataReader
+
+
+
+Committed transaction at 9.6.2018 г. 21:11:29 +03:00
+
+Closed connection at 9.6.2018 г. 21:11:29 +03:00
+
+9.6.2018 г. 18:22:42 : This was logged just now!!!
+Opened connection at 9.6.2018 г. 21:22:46 +03:00
+
+
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.MyCollectionItems','dbo.MyObjectWrappers')
+    OR t.TABLE_NAME = 'EdmMetadata'
+
+
+-- Executing at 9.6.2018 г. 21:22:46 +03:00
+
+-- Completed in 16 ms with result: 2
+
+
+
+Closed connection at 9.6.2018 г. 21:22:46 +03:00
+
+Opened connection at 9.6.2018 г. 21:22:47 +03:00
+
+SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 9.6.2018 г. 21:22:48 +03:00
+
+-- Completed in 37 ms with result: SqlDataReader
+
+
+
+Closed connection at 9.6.2018 г. 21:22:48 +03:00
+
+Opened connection at 9.6.2018 г. 21:22:48 +03:00
+
+SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 9.6.2018 г. 21:22:48 +03:00
+
+-- Completed in 12 ms with result: SqlDataReader
+
+
+
+Closed connection at 9.6.2018 г. 21:22:48 +03:00
+
+Opened connection at 9.6.2018 г. 21:24:10 +03:00
+
+
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.MyCollectionItems','dbo.MyObjectWrappers')
+    OR t.TABLE_NAME = 'EdmMetadata'
+
+
+-- Executing at 9.6.2018 г. 21:24:10 +03:00
+
+-- Completed in 9 ms with result: 2
+
+
+
+Closed connection at 9.6.2018 г. 21:24:10 +03:00
+
+Opened connection at 9.6.2018 г. 21:24:10 +03:00
+
+SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 9.6.2018 г. 21:24:10 +03:00
+
+-- Completed in 8 ms with result: SqlDataReader
+
+
+
+Closed connection at 9.6.2018 г. 21:24:10 +03:00
+
+Opened connection at 9.6.2018 г. 21:24:10 +03:00
+
+SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 9.6.2018 г. 21:24:10 +03:00
+
+-- Completed in 9 ms with result: SqlDataReader
+
+
+
+Closed connection at 9.6.2018 г. 21:24:10 +03:00
+
+9.6.2018 г. 18:29:50 : This was logged just now!!!
+Opened connection at 9.6.2018 г. 21:30:06 +03:00
+
+Started transaction at 9.6.2018 г. 21:30:06 +03:00
+
+CREATE TABLE [dbo].[MyCollectionItems] (
+    [MyCollectionItemId] [int] NOT NULL IDENTITY,
+    [MyObjectWrapperId] [int],
+    CONSTRAINT [PK_dbo.MyCollectionItems] PRIMARY KEY ([MyCollectionItemId])
+)
+
+
+-- Executing at 9.6.2018 г. 21:30:06 +03:00
+
+-- Completed in 25 ms with result: -1
+
+
+
+CREATE TABLE [dbo].[MyObjectWrappers] (
+    [ObjectWrapperId] [int] NOT NULL IDENTITY,
+    [ObjectAsByte] [varbinary](max),
+    [Name] [nvarchar](max),
+    CONSTRAINT [PK_dbo.MyObjectWrappers] PRIMARY KEY ([ObjectWrapperId])
+)
+
+
+-- Executing at 9.6.2018 г. 21:30:06 +03:00
+
+-- Completed in 8 ms with result: -1
+
+
+
+CREATE INDEX [IX_MyObjectWrapperId] ON [dbo].[MyCollectionItems]([MyObjectWrapperId])
+
+
+-- Executing at 9.6.2018 г. 21:30:06 +03:00
+
+-- Completed in 9 ms with result: -1
+
+
+
+ALTER TABLE [dbo].[MyCollectionItems] ADD CONSTRAINT [FK_dbo.MyCollectionItems_dbo.MyObjectWrappers_MyObjectWrapperId] FOREIGN KEY ([MyObjectWrapperId]) REFERENCES [dbo].[MyObjectWrappers] ([ObjectWrapperId])
+
+
+-- Executing at 9.6.2018 г. 21:30:06 +03:00
+
+-- Completed in 10 ms with result: -1
+
+
+
+CREATE TABLE [dbo].[__MigrationHistory] (
+    [MigrationId] [nvarchar](150) NOT NULL,
+    [ContextKey] [nvarchar](300) NOT NULL,
+    [Model] [varbinary](max) NOT NULL,
+    [ProductVersion] [nvarchar](32) NOT NULL,
+    CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY ([MigrationId], [ContextKey])
+)
+
+
+-- Executing at 9.6.2018 г. 21:30:07 +03:00
+
+-- Completed in 17 ms with result: -1
+
+
+
+INSERT [dbo].[__MigrationHistory]([MigrationId], [ContextKey], [Model], [ProductVersion])
+VALUES (N'201806091830061_InitialCreate', N'Client.Data.TaskBettingDbContext',  0x1F8B0800000000000400D559DB6EE336107D2FD07F10F4D41659CBCEBEB486BD8B5C0BA39B38889D6DDF16B43476D8A52895A4021B45BFAC0FFDA4FE4287BAD9222559F636698A00414272CE0CE7461EEAEF3FFF1ABD5F87CC79022169C4C7EEA0D7771DE07E1450BE1ABB895ABEF9DE7DFFEEEBAF465741B8763E16EBDEEA7528C9E5D87D542A1E7A9EF41F2124B217525F44325AAA9E1F851E0922EFB4DFFFC11B0C3C400817B11C67749F70454348FFC17F2F22EE43AC12C26EA20098CCC7716696A23AB7240419131FC6EE05A3C055EF9228E23A678C123461066CE93A84F3481185060E1F24CC9488F86A16E30061F34D0CB86E499884DCF0E17679D73DF44FF51EBCAD6001E5275245E1818083B7B9533C53FC28D7BAA5D3D06D57E85EB5D1BB4E5D37766F36171163E06BF88982D0754CA5C30B26B4C0D6C38B2C183D53F6C4C9569C94F98069A37F7022612A1130E6902841D88973972C18F57F82CD3CFA0C7CCC13C6760D455371AE32804377228A41A8CD3D2C1BCC9F04AEE355713C13A88469C1C8363CE1EAEDA9EBDCA27164C1A0CC931DE7CC5424E047E0208882E08E280502C33C0920F5B4658DA57BBAF81555FF2C488CE3966A43FA963CD155AAB81DC775EE81A5EBE4238DB33AB0C2F5C912BA1651781FB11A9F986B3FCDA244F8E88A79D451604EC40A547547236F9B8F7BB2D4B0F49024AD88FE07396A45F8D0046D4F9167CCCE4CF1993CDF2828B49E534E044ADE90F507E02BF588D1216BCC1DBA86A018C92D6947D7BF0B546CCA78B074437DE014CF21145222B195349688CE4AF9FC8551E479E7C2282AA94B619C4919F934B5BFA17959B657BD73C503E7D00ACF0254E7288C17D60C8DB14AD0D8B1FB9D158D03F4958EDBD567C4A1AAAEDFEB0D2C8D587720747A1386B70789954CB9B28B94729FC6841D689C81734CB9EBE096EACD994B8881EBE23C30485DECAA396A6CCB4A038C16B5CFAB236F2735ED568E320A2540E4B6CC89FC7C0E4A61CD5F2EF424AC554D53C7DB5ADED7655EED667669F019A88662C072DFD651630E5B296B8256FC568F69E4A901B9E39B6663EDAEB323D6B55399013DA2DECBFDD7FAD34A99232ABCA2C174AE7938567D57D323CBDCDA92032F6307058BF01A68C4E80695620AEED08A7CC499E59CE2CDECF03B77986178BEACB97A97D6969AF088262B306651355A7A4D85549AD02C883EF82E82D05A565B490D095DA86C2A163BB4459E1792FAEF4C7A876DD92565B7A31CE01AB71AEAF6965E4C5A32CD8648391F614474B8BDE34812F2AE0CA11DDD6A9A55F0BD3D55E79FB17BABEB5A8E366AC08C60C7F81AA5757C785B7B4CA7E8EE4168727FABF33BB8BE1DB7B8D8DAA0C54C77C4EC32BB8B948DBC703A584DD15C526A2F9BA3D104477943EAF0E06276A86C89EBA06B9E68A0BBD36C23B1E4B2349AFDC6B2ACDA2EB8219C2E41AA8C5FB9A7FDC1A9F174F37A9E513C290376E05BCAAB7BD0A0DAFB7B49A1C5288F7CC348B55997BA09DE2FD763F7F7547AE84C7E31EF0993E0C4990A4C8FA1D377FED835C7267C47BF20BC221EFF2C41A9A3EE4F442C52F6FE4D48D6DFB63BB69DAE7384F21F89E800F42254D6B8387F21856CBED27E211B3E929BEE3B7E5F9683FEEFC8A67D933E8C45762291D9D93776834584499215C35EFAB48F6B76A19AF58AF7B0AAD741486BF75A7B613C8476B632D8E7E197F695099378E74B16D694A4AB2D84FEAEC533A3B6A0C59A095F4645411916154BCC0318140930B7CF84A24BE22B9CF641CAF441F52361092EB90A17104CF834517182A7828470C12ACFBFBA1ADBF4A724BA6AF3681AA70FA9FFC616D04C8A5B80293F4F280B4ABBAFEDB3AE094297797E80EA582A7D90AE3625D26DC43B02E5EE2BBBD31CC29821989CF2197982636C7B90F00156C4DF1437DF6690FD81A8BA7D7449C94A9050E6185B79FD75D6D39F67DFFD036AAB5225D01D0000 , N'6.2.0-61023')
+
+-- Executing at 9.6.2018 г. 21:30:07 +03:00
+
+-- Completed in 9 ms with result: 1
+
+
+
+Committed transaction at 9.6.2018 г. 21:30:07 +03:00
+
+Opened connection at 9.6.2018 г. 21:30:07 +03:00
+
+Started transaction at 9.6.2018 г. 21:30:07 +03:00
+
+INSERT [dbo].[MyObjectWrappers]([ObjectAsByte], [Name])
+VALUES (@0, @1)
+SELECT [ObjectWrapperId]
+FROM [dbo].[MyObjectWrappers]
+WHERE @@ROWCOUNT > 0 AND [ObjectWrapperId] = scope_identity()
+
+
+-- @0: 'System.Byte[]' (Type = Binary, Size = -1)
+
+-- @1: 'First' (Type = String, Size = -1)
+
+-- Executing at 9.6.2018 г. 21:30:07 +03:00
+
+-- Completed in 12 ms with result: SqlDataReader
+
+
+
+INSERT [dbo].[MyCollectionItems]([MyObjectWrapperId])
+VALUES (@0)
+SELECT [MyCollectionItemId]
+FROM [dbo].[MyCollectionItems]
+WHERE @@ROWCOUNT > 0 AND [MyCollectionItemId] = scope_identity()
+
+
+-- @0: '1' (Type = Int32)
+
+-- Executing at 9.6.2018 г. 21:30:07 +03:00
+
+-- Completed in 7 ms with result: SqlDataReader
+
+
+
+INSERT [dbo].[MyCollectionItems]([MyObjectWrapperId])
+VALUES (@0)
+SELECT [MyCollectionItemId]
+FROM [dbo].[MyCollectionItems]
+WHERE @@ROWCOUNT > 0 AND [MyCollectionItemId] = scope_identity()
+
+
+-- @0: '1' (Type = Int32)
+
+-- Executing at 9.6.2018 г. 21:30:07 +03:00
+
+-- Completed in 17 ms with result: SqlDataReader
+
+
+
+Committed transaction at 9.6.2018 г. 21:30:07 +03:00
+
+Closed connection at 9.6.2018 г. 21:30:07 +03:00
+
+10.6.2018 г. 7:03:29 : This was logged just now!!!
+Opened connection at 10.6.2018 г. 10:04:07 +03:00
+
+
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.MyCollectionItems','dbo.MyObjectWrappers')
+    OR t.TABLE_NAME = 'EdmMetadata'
+
+
+-- Executing at 10.6.2018 г. 10:04:07 +03:00
+
+-- Completed in 676 ms with result: 2
+
+
+
+Closed connection at 10.6.2018 г. 10:04:08 +03:00
+
+Opened connection at 10.6.2018 г. 10:04:09 +03:00
+
+SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 10.6.2018 г. 10:04:13 +03:00
+
+-- Completed in 165 ms with result: SqlDataReader
+
+
+
+Closed connection at 10.6.2018 г. 10:04:13 +03:00
+
+Opened connection at 10.6.2018 г. 10:04:13 +03:00
+
+SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 10.6.2018 г. 10:04:13 +03:00
+
+-- Completed in 69 ms with result: SqlDataReader
+
+
+
+Closed connection at 10.6.2018 г. 10:04:14 +03:00
+
+Opened connection at 10.6.2018 г. 10:04:17 +03:00
+
+Started transaction at 10.6.2018 г. 10:04:17 +03:00
+
+INSERT [dbo].[MyObjectWrappers]([ObjectAsByte], [Name])
+VALUES (@0, @1)
+SELECT [ObjectWrapperId]
+FROM [dbo].[MyObjectWrappers]
+WHERE @@ROWCOUNT > 0 AND [ObjectWrapperId] = scope_identity()
+
+
+-- @0: 'System.Byte[]' (Type = Binary, Size = -1)
+
+-- @1: 'First' (Type = String, Size = -1)
+
+-- Executing at 10.6.2018 г. 10:04:17 +03:00
+
+-- Completed in 262 ms with result: SqlDataReader
+
+
+
+INSERT [dbo].[MyCollectionItems]([MyObjectWrapperId])
+VALUES (@0)
+SELECT [MyCollectionItemId]
+FROM [dbo].[MyCollectionItems]
+WHERE @@ROWCOUNT > 0 AND [MyCollectionItemId] = scope_identity()
+
+
+-- @0: '2' (Type = Int32)
+
+-- Executing at 10.6.2018 г. 10:04:18 +03:00
+
+-- Completed in 118 ms with result: SqlDataReader
+
+
+
+INSERT [dbo].[MyCollectionItems]([MyObjectWrapperId])
+VALUES (@0)
+SELECT [MyCollectionItemId]
+FROM [dbo].[MyCollectionItems]
+WHERE @@ROWCOUNT > 0 AND [MyCollectionItemId] = scope_identity()
+
+
+-- @0: '2' (Type = Int32)
+
+-- Executing at 10.6.2018 г. 10:04:18 +03:00
+
+-- Completed in 72 ms with result: SqlDataReader
+
+
+
+Committed transaction at 10.6.2018 г. 10:04:18 +03:00
+
+Closed connection at 10.6.2018 г. 10:04:18 +03:00
+
+10.6.2018 г. 7:44:34 : This was logged just now!!!
+Opened connection at 10.6.2018 г. 10:45:02 +03:00
+
+
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.MyCollectionItems','dbo.MyObjectWrappers')
+    OR t.TABLE_NAME = 'EdmMetadata'
+
+
+-- Executing at 10.6.2018 г. 10:45:02 +03:00
+
+-- Completed in 119 ms with result: 2
+
+
+
+Closed connection at 10.6.2018 г. 10:45:02 +03:00
+
+Opened connection at 10.6.2018 г. 10:45:04 +03:00
+
+SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 10.6.2018 г. 10:45:08 +03:00
+
+-- Completed in 148 ms with result: SqlDataReader
+
+
+
+Closed connection at 10.6.2018 г. 10:45:08 +03:00
+
+Opened connection at 10.6.2018 г. 10:45:08 +03:00
+
+SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 10.6.2018 г. 10:45:09 +03:00
+
+-- Completed in 56 ms with result: SqlDataReader
+
+
+
+Closed connection at 10.6.2018 г. 10:45:09 +03:00
+
+Opened connection at 10.6.2018 г. 10:45:09 +03:00
+
+SELECT 
+    [Project2].[ObjectWrapperId] AS [ObjectWrapperId], 
+    [Project2].[ObjectAsByte] AS [ObjectAsByte], 
+    [Project2].[Name] AS [Name], 
+    [Project2].[C1] AS [C1], 
+    [Project2].[MyCollectionItemId] AS [MyCollectionItemId], 
+    [Project2].[MyObjectWrapperId] AS [MyObjectWrapperId]
+    FROM ( SELECT 
+        [Limit1].[ObjectWrapperId] AS [ObjectWrapperId], 
+        [Limit1].[ObjectAsByte] AS [ObjectAsByte], 
+        [Limit1].[Name] AS [Name], 
+        [Extent2].[MyCollectionItemId] AS [MyCollectionItemId], 
+        [Extent2].[MyObjectWrapperId] AS [MyObjectWrapperId], 
+        CASE WHEN ([Extent2].[MyCollectionItemId] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C1]
+        FROM   (SELECT TOP (1) 
+            [Extent1].[ObjectWrapperId] AS [ObjectWrapperId], 
+            [Extent1].[ObjectAsByte] AS [ObjectAsByte], 
+            [Extent1].[Name] AS [Name]
+            FROM [dbo].[MyObjectWrappers] AS [Extent1]
+            WHERE [Extent1].[ObjectWrapperId] = @p__linq__0 ) AS [Limit1]
+        LEFT OUTER JOIN [dbo].[MyCollectionItems] AS [Extent2] ON [Limit1].[ObjectWrapperId] = [Extent2].[MyObjectWrapperId]
+    )  AS [Project2]
+    ORDER BY [Project2].[ObjectWrapperId] ASC, [Project2].[C1] ASC
+
+
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+
+-- Executing at 10.6.2018 г. 10:45:10 +03:00
+
+-- Completed in 100 ms with result: SqlDataReader
+
+
+
+Closed connection at 10.6.2018 г. 10:45:11 +03:00
+
+Opened connection at 10.6.2018 г. 10:46:13 +03:00
+
+Started transaction at 10.6.2018 г. 10:46:13 +03:00
+
+UPDATE [dbo].[MyObjectWrappers]
+SET [ObjectAsByte] = @0
+WHERE ([ObjectWrapperId] = @1)
+
+-- @0: 'System.Byte[]' (Type = Binary, Size = -1)
+
+-- @1: '2' (Type = Int32)
+
+-- Executing at 10.6.2018 г. 10:46:14 +03:00
+
+-- Completed in 68 ms with result: 1
+
+
+
+Committed transaction at 10.6.2018 г. 10:46:14 +03:00
+
+Closed connection at 10.6.2018 г. 10:46:14 +03:00
+
+10.6.2018 г. 7:49:19 : This was logged just now!!!
+Opened connection at 10.6.2018 г. 10:49:43 +03:00
+
+
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.MyCollectionItems','dbo.MyObjectWrappers')
+    OR t.TABLE_NAME = 'EdmMetadata'
+
+
+-- Executing at 10.6.2018 г. 10:49:43 +03:00
+
+-- Completed in 37 ms with result: 2
+
+
+
+Closed connection at 10.6.2018 г. 10:49:43 +03:00
+
+Opened connection at 10.6.2018 г. 10:49:45 +03:00
+
+SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 10.6.2018 г. 10:49:48 +03:00
+
+-- Completed in 60 ms with result: SqlDataReader
+
+
+
+Closed connection at 10.6.2018 г. 10:49:48 +03:00
+
+Opened connection at 10.6.2018 г. 10:49:48 +03:00
+
+SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+
+
+-- p__linq__0: 'Client.Data.TaskBettingDbContext' (Type = String, Size = 4000)
+
+-- Executing at 10.6.2018 г. 10:49:48 +03:00
+
+-- Completed in 36 ms with result: SqlDataReader
+
+
+
+Closed connection at 10.6.2018 г. 10:49:48 +03:00
+
+Opened connection at 10.6.2018 г. 10:49:49 +03:00
+
+SELECT 
+    [Project2].[ObjectWrapperId] AS [ObjectWrapperId], 
+    [Project2].[ObjectAsByte] AS [ObjectAsByte], 
+    [Project2].[Name] AS [Name], 
+    [Project2].[C1] AS [C1], 
+    [Project2].[MyCollectionItemId] AS [MyCollectionItemId], 
+    [Project2].[MyObjectWrapperId] AS [MyObjectWrapperId]
+    FROM ( SELECT 
+        [Limit1].[ObjectWrapperId] AS [ObjectWrapperId], 
+        [Limit1].[ObjectAsByte] AS [ObjectAsByte], 
+        [Limit1].[Name] AS [Name], 
+        [Extent2].[MyCollectionItemId] AS [MyCollectionItemId], 
+        [Extent2].[MyObjectWrapperId] AS [MyObjectWrapperId], 
+        CASE WHEN ([Extent2].[MyCollectionItemId] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C1]
+        FROM   (SELECT TOP (1) 
+            [Extent1].[ObjectWrapperId] AS [ObjectWrapperId], 
+            [Extent1].[ObjectAsByte] AS [ObjectAsByte], 
+            [Extent1].[Name] AS [Name]
+            FROM [dbo].[MyObjectWrappers] AS [Extent1]
+            WHERE [Extent1].[ObjectWrapperId] = @p__linq__0 ) AS [Limit1]
+        LEFT OUTER JOIN [dbo].[MyCollectionItems] AS [Extent2] ON [Limit1].[ObjectWrapperId] = [Extent2].[MyObjectWrapperId]
+    )  AS [Project2]
+    ORDER BY [Project2].[ObjectWrapperId] ASC, [Project2].[C1] ASC
+
+
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+
+-- Executing at 10.6.2018 г. 10:49:50 +03:00
+
+-- Completed in 23 ms with result: SqlDataReader
+
+
+
+Closed connection at 10.6.2018 г. 10:49:50 +03:00
+
+Opened connection at 10.6.2018 г. 10:50:29 +03:00
+
+Started transaction at 10.6.2018 г. 10:50:29 +03:00
+
+UPDATE [dbo].[MyObjectWrappers]
+SET [ObjectAsByte] = @0, [Name] = @1
+WHERE ([ObjectWrapperId] = @2)
+
+-- @0: 'System.Byte[]' (Type = Binary, Size = -1)
+
+-- @1: 'Second' (Type = String, Size = -1)
+
+-- @2: '2' (Type = Int32)
+
+-- Executing at 10.6.2018 г. 10:50:29 +03:00
+
+-- Completed in 45 ms with result: 1
+
+
+
+INSERT [dbo].[MyCollectionItems]([MyObjectWrapperId])
+VALUES (@0)
+SELECT [MyCollectionItemId]
+FROM [dbo].[MyCollectionItems]
+WHERE @@ROWCOUNT > 0 AND [MyCollectionItemId] = scope_identity()
+
+
+-- @0: '2' (Type = Int32)
+
+-- Executing at 10.6.2018 г. 10:50:29 +03:00
+
+-- Completed in 65 ms with result: SqlDataReader
+
+
+
+INSERT [dbo].[MyCollectionItems]([MyObjectWrapperId])
+VALUES (@0)
+SELECT [MyCollectionItemId]
+FROM [dbo].[MyCollectionItems]
+WHERE @@ROWCOUNT > 0 AND [MyCollectionItemId] = scope_identity()
+
+
+-- @0: '2' (Type = Int32)
+
+-- Executing at 10.6.2018 г. 10:50:29 +03:00
+
+-- Completed in 35 ms with result: SqlDataReader
+
+
+
+Committed transaction at 10.6.2018 г. 10:50:30 +03:00
+
+Closed connection at 10.6.2018 г. 10:50:30 +03:00
+
